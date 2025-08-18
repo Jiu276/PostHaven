@@ -6,7 +6,7 @@ const articles = [
         excerpt: "Explore how AI is transforming our daily experiences and what the future holds for human-AI collaboration in various industries.",
         category: "technology",
         image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-        date: "2024-01-15",
+        date: "2025-01-15",
         readTime: "8 min read"
     },
     {
@@ -15,7 +15,7 @@ const articles = [
         excerpt: "Discover the art of minimalist living and how reducing clutter can lead to increased focus, productivity, and overall well-being.",
         category: "lifestyle",
         image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-        date: "2024-01-12",
+        date: "2025-02-12",
         readTime: "6 min read"
     },
     {
@@ -24,7 +24,7 @@ const articles = [
         excerpt: "Learn about innovative approaches to creating environmentally conscious businesses that drive both profit and positive impact.",
         category: "business",
         image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-        date: "2024-01-10",
+        date: "2025-03-10",
         readTime: "12 min read"
     },
     {
@@ -33,7 +33,7 @@ const articles = [
         excerpt: "An in-depth look at how blockchain technology is reshaping the creative industry and empowering digital artists worldwide.",
         category: "creative",
         image: "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-        date: "2024-01-08",
+        date: "2025-04-08",
         readTime: "10 min read"
     },
     {
@@ -42,7 +42,7 @@ const articles = [
         excerpt: "Strategies for fostering team collaboration, maintaining company culture, and ensuring productivity in distributed workforces.",
         category: "business",
         image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-        date: "2024-01-05",
+        date: "2025-05-05",
         readTime: "7 min read"
     },
     {
@@ -51,7 +51,7 @@ const articles = [
         excerpt: "Tips and insights for eco-conscious travelers looking to minimize their environmental impact while experiencing amazing destinations.",
         category: "travel",
         image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-        date: "2024-01-03",
+        date: "2025-02-28",
         readTime: "9 min read"
     },
     {
@@ -60,7 +60,7 @@ const articles = [
         excerpt: "Understanding human behavior and cognitive patterns to create intuitive, engaging, and accessible digital experiences.",
         category: "technology",
         image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-        date: "2024-01-01",
+        date: "2025-03-25",
         readTime: "11 min read"
     },
     {
@@ -69,7 +69,7 @@ const articles = [
         excerpt: "Science-backed morning rituals that can transform your productivity, mental clarity, and overall quality of life.",
         category: "lifestyle",
         image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-        date: "2023-12-28",
+        date: "2025-04-22",
         readTime: "5 min read"
     },
     {
@@ -78,7 +78,7 @@ const articles = [
         excerpt: "How modern technology is changing storytelling, from interactive narratives to AI-assisted writing tools and digital publishing.",
         category: "creative",
         image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-        date: "2023-12-25",
+        date: "2025-05-18",
         readTime: "8 min read"
     },
     {
@@ -87,7 +87,7 @@ const articles = [
         excerpt: "Discover lesser-known travel destinations that offer authentic experiences away from crowded tourist attractions.",
         category: "travel",
         image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-        date: "2023-12-22",
+        date: "2025-06-15",
         readTime: "6 min read"
     },
     {
@@ -96,7 +96,7 @@ const articles = [
         excerpt: "Exploring innovative applications of blockchain in supply chain, healthcare, voting systems, and digital identity verification.",
         category: "technology",
         image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-        date: "2023-12-20",
+        date: "2025-07-12",
         readTime: "13 min read"
     },
     {
@@ -105,7 +105,7 @@ const articles = [
         excerpt: "Building a compelling personal brand that resonates with your audience and drives business growth in the digital era.",
         category: "business",
         image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-        date: "2023-12-18",
+        date: "2025-08-09",
         readTime: "9 min read"
     },
     {
