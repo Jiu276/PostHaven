@@ -137,9 +137,13 @@ const articles = [
     }
 ];
 
+const ARTICLES_PER_PAGE = 6;
+
 // Global variables
 let currentFilter = 'all';
 let searchTerm = '';
+let currentPage = 1;
+let filteredArticles = [];
 
 // DOM elements
 const articlesGrid = document.getElementById('articlesGrid');
@@ -148,12 +152,14 @@ const filterButtons = document.querySelectorAll('.filter-btn');
 const noResults = document.getElementById('noResults');
 const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('.nav-menu');
+const pagination = document.getElementById('pagination');
 
 // Initialize the website
 document.addEventListener('DOMContentLoaded', function() {
     // Sort articles by date (newest first)
     const sortedArticles = articles.sort((a, b) => new Date(b.date) - new Date(a.date));
-    displayArticles(sortedArticles);
+    filteredArticles = sortedArticles;
+    renderCurrentPage();
     setupEventListeners();
 });
 
@@ -195,6 +201,10 @@ function displayArticles(articlesToShow) {
     if (articlesToShow.length === 0) {
         articlesGrid.style.display = 'none';
         noResults.style.display = 'block';
+        if (pagination) {
+            pagination.classList.remove('visible');
+            pagination.innerHTML = '';
+        }
         return;
     }
     
@@ -238,6 +248,8 @@ function displayArticles(articlesToShow) {
             }, 150);
         });
     });
+
+    addScrollAnimations();
 }
 
 // Handle search input
@@ -258,18 +270,18 @@ function handleFilter(e) {
 
 // Filter and display articles based on current filters and search term
 function filterAndDisplayArticles() {
-    let filteredArticles = articles;
+    let filtered = [...articles];
     
     // Apply category filter
     if (currentFilter !== 'all') {
-        filteredArticles = filteredArticles.filter(article => 
+        filtered = filtered.filter(article => 
             article.category === currentFilter
         );
     }
     
     // Apply search filter
     if (searchTerm) {
-        filteredArticles = filteredArticles.filter(article =>
+        filtered = filtered.filter(article =>
             article.title.toLowerCase().includes(searchTerm) ||
             article.excerpt.toLowerCase().includes(searchTerm) ||
             article.category.toLowerCase().includes(searchTerm)
@@ -277,9 +289,11 @@ function filterAndDisplayArticles() {
     }
     
     // Sort by date (newest first)
-    filteredArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
+    filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
     
-    displayArticles(filteredArticles);
+    filteredArticles = filtered;
+    currentPage = 1;
+    renderCurrentPage();
 }
 
 // Format date for display
@@ -336,8 +350,108 @@ function addScrollAnimations() {
     });
 }
 
-// Call scroll animations after articles are loaded
-setTimeout(addScrollAnimations, 100);
+function renderCurrentPage() {
+    const totalItems = filteredArticles.length;
+    const totalPages = Math.max(1, Math.ceil(totalItems / ARTICLES_PER_PAGE));
+
+    if (totalItems === 0) {
+        displayArticles([]);
+        renderPagination(totalPages);
+        return;
+    }
+
+    if (currentPage > totalPages) {
+        currentPage = totalPages;
+    }
+
+    const startIndex = (currentPage - 1) * ARTICLES_PER_PAGE;
+    const paginatedArticles = filteredArticles.slice(startIndex, startIndex + ARTICLES_PER_PAGE);
+
+    displayArticles(paginatedArticles);
+    renderPagination(totalPages);
+}
+
+function renderPagination(totalPages) {
+    if (!pagination) return;
+
+    if (filteredArticles.length <= ARTICLES_PER_PAGE) {
+        pagination.classList.remove('visible');
+        pagination.innerHTML = '';
+        return;
+    }
+
+    pagination.classList.add('visible');
+
+    const prevDisabled = currentPage === 1 ? 'disabled' : '';
+    const nextDisabled = currentPage === totalPages ? 'disabled' : '';
+
+    const pageButtons = [];
+    pageButtons.push(`<button class="page-btn prev" data-page="${currentPage - 1}" ${prevDisabled}>Prev</button>`);
+
+    getVisiblePages(totalPages).forEach(page => {
+        if (page === 'ellipsis') {
+            pageButtons.push('<span class="ellipsis">...</span>');
+        } else {
+            const activeClass = page === currentPage ? 'active' : '';
+            pageButtons.push(`<button class="page-number ${activeClass}" data-page="${page}">${page}</button>`);
+        }
+    });
+
+    pageButtons.push(`<button class="page-btn next" data-page="${currentPage + 1}" ${nextDisabled}>Next</button>`);
+
+    pagination.innerHTML = pageButtons.join('');
+
+    pagination.querySelectorAll('button[data-page]').forEach(button => {
+        button.addEventListener('click', () => {
+            if (button.hasAttribute('disabled')) return;
+            const targetPage = parseInt(button.dataset.page, 10);
+            if (!isNaN(targetPage) && targetPage >= 1 && targetPage <= totalPages && targetPage !== currentPage) {
+                currentPage = targetPage;
+                renderCurrentPage();
+                document.querySelector('.articles').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
+
+function getVisiblePages(totalPages) {
+    const pages = [];
+    const maxVisible = 5;
+
+    if (totalPages <= maxVisible + 2) {
+        for (let i = 1; i <= totalPages; i++) {
+            pages.push(i);
+        }
+        return pages;
+    }
+
+    let start = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+    let end = Math.min(totalPages, start + maxVisible - 1);
+    start = Math.max(1, end - maxVisible + 1);
+
+    if (start > 1) {
+        pages.push(1);
+        if (start > 2) {
+            pages.push('ellipsis');
+        }
+    }
+
+    for (let i = start; i <= end; i++) {
+        pages.push(i);
+    }
+
+    if (end < totalPages) {
+        if (end < totalPages - 1) {
+            pages.push('ellipsis');
+        }
+        pages.push(totalPages);
+    }
+
+    return pages;
+}
 
 // Add a loading state for better UX
 function showLoadingState() {
